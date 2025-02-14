@@ -32,8 +32,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 typedef enum {NOT_WHITESPACE, WHITESPACE, TOKEN_AVAILABLE, LINE_DONE, FILE_DONE, PARSED_OKAY} tokenstat;
 typedef enum {NOSEG, DATASEG, TEXTSEG} segtype;
 
+	// CHANGE (2025-02-14): inline was renamed to insideline.
 int		tokennum;
-int		inline, outline;
+int		insideline, outline;
 
 char	*token;
 char	tokens[MAX_TOKENS][MAX_TOKEN_LENGTH+1];
@@ -758,7 +759,7 @@ int	numparse = sizeof (parsedata) / sizeof (parsedata[0]);
 
 void errorexit (void)
 {
-	fprintf (stderr, "In line: %d, out line: %d\n", inline, outline);
+	fprintf (stderr, "In line: %d, out line: %d\n", insideline, outline);
 	exit (1);
 }
 
@@ -1025,13 +1026,13 @@ void main (int argc, char **argv)
 
 	printf (" .386P\n"
             " .model FLAT\n");
-	inline = 1;
+	insideline = 1;
 	outline = 3;
 
 	for ( ;; )
 	{
 		stat = parseline ();
-		inline++;
+		insideline++;
 
 		switch (stat)
 		{

@@ -173,20 +173,21 @@ qboolean NET_GetPacket (void)
 	ret = recvfrom (net_socket, (char *)net_message_buffer, sizeof(net_message_buffer), 0, (struct sockaddr *)&from, &fromlen);
 	SockadrToNetadr (&from, &net_from);
 
+	// CHANGE (2025-02-14): errno was renamed to qerrno. Thanks to Fabian Sanglard (https://fabiensanglard.net/quakeSource/)
 	if (ret == -1)
 	{
-		int errno = WSAGetLastError();
+		int qerrno = WSAGetLastError();
 
-		if (errno == WSAEWOULDBLOCK)
+		if (qerrno == WSAEWOULDBLOCK)
 			return false;
-		if (errno == WSAEMSGSIZE) {
+		if (qerrno == WSAEMSGSIZE) {
 			Con_Printf ("Warning:  Oversize packet from %s\n",
 				NET_AdrToString (net_from));
 			return false;
 		}
 
 
-		Sys_Error ("NET_GetPacket: %s", strerror(errno));
+		Sys_Error ("NET_GetPacket: %s", strerror(qerrno));
 	}
 
 	net_message.cursize = ret;
