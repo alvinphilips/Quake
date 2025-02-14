@@ -1,3 +1,17 @@
+A fork of id Software's Quake (https://github.com/id-Software/Quake), upgraded to a Visual Studio 2022 solution.
+Currently, only QuakeWorld (the QW directory) has been updated.
+
+Minimal modifications to the original source code were made.
+
+A brief overview of the steps taken:
+1. Upgrade to VS 2008 solution on Windows XP
+2. Rename errno in client/net_wins.c to qerrno and ignore the 'libc.lib' library (based on https://fabiensanglard.net/quakeSource)
+3. Upgrade VS 2008 solution to VS 2010 solution (still on Windows XP)
+4. Upgrade VS 2010 solution to VS 2022 solution
+5. Rename inline in gas2masm/gas2masm.c to insideline
+6. Disable safe exceptions (SAFESH:NO)
+
+-- Original README below --
 
 This is the complete source code for winquake, glquake, quakeworld, and 
 glquakeworld.
