@@ -20,6 +20,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{E5C093BE-6703-4AA7-AF4E-EA5BB4E85E5C}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='GLDebug|Win32'" Label="Configuration">
@@ -76,6 +77,12 @@
     <OutDir Condition="'$(Configuration)|$(Platform)'=='GLDebug|Win32'">.\GLDebug\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='GLDebug|Win32'">.\GLDebug\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='GLDebug|Win32'">true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='GLDebug|Win32'">
+    <TargetName>gl$(ProjectName)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='GLRelease|Win32'">
+    <TargetName>gl$(ProjectName)</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Midl>
